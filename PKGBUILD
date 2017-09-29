@@ -2,7 +2,7 @@
 
 pkgname=consolekit2
 pkgver=1.2.0
-pkgrel=2
+pkgrel=3
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=(x86_64)
 url="https://github.com/ConsoleKit2/ConsoleKit2"
@@ -15,7 +15,7 @@ optdepends=('consolekit-openrc: consolekit openrc initscript'
 			'pam: pam modules support'
 			'pm-utils: support for suspend/hibernate'
 			'consolekit-runitserv: service for runit')
-makedepends=('xmlto' 'docbook-xsl')
+makedepends=('xmlto' 'docbook-xsl' 'gtk-doc')
 options=('libtool')
 _commit=938af16b763127728643c8e042951620032a0b7d  # tag 1.2.0
 source=("$pkgname::git+https://github.com/ConsoleKit2/ConsoleKit2#commit=$_commit"
@@ -48,9 +48,13 @@ build(){
 		--enable-udev-acl \
 		--enable-docbook-docs \
 		--with-dbus-services=/usr/share/dbus-1/services \
+		--with-dbus-sys=/usr/share/dbus-1/system.d \
 		--with-xinitrc-dir=/etc/X11/xinit/xinitrc.d \
 		--with-pam-module-dir=/usr/lib/security \
-		--without-systemdsystemunitdir
+		--without-systemdsystemunitdir \
+		--enable-libcgmanager \
+		--enable-libevdev \
+		--enable-libudev
 
 		make
 }
