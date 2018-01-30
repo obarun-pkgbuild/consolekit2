@@ -2,7 +2,7 @@
 
 pkgname=consolekit2
 pkgver=1.2.1
-pkgrel=1
+pkgrel=2
 pkgdesc="A framework for defining and tracking users, login sessions, and seats"
 arch=(x86_64)
 url="https://github.com/ConsoleKit2/ConsoleKit2"
@@ -78,7 +78,7 @@ package() {
 	# rename 90-consolekit to .sh
 	# xinitrc only load file ending with .sh extension
 	mv  "${pkgdir}"/etc/X11/xinit/xinitrc.d/90-consolekit "${pkgdir}"/etc/X11/xinit/xinitrc.d/90-consolekit.sh
-	sed -i "s:STARTUP.*:STARTUP=\"\$CK_LAUNCH_SESSION \$@\":g" "${pkgdir}"/etc/X11/xinit/xinitrc.d/90-consolekit.sh
+	#sed -i "s:STARTUP.*:STARTUP=\"\$CK_LAUNCH_SESSION \$@\":g" "${pkgdir}"/etc/X11/xinit/xinitrc.d/90-consolekit.sh
 	
 	install -Dm 0755 "${srcdir}"/pam-foreground-compat.ck "${pkgdir}"/usr/lib/ConsoleKit/run-session.d/pam-foreground-compat.ck
 	
